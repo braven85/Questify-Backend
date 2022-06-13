@@ -1,6 +1,8 @@
 tags:
-  name: Users
-  description: Users endpoints
+  - name: Users
+    description: Users endpoints
+  - name: Card
+    description: Card endpoints
 
 components:
   securitySchemes:
@@ -199,6 +201,317 @@ components:
           format: uuid
           example: 05b4cd18-f5af-4aac-9eed-272c4f16464e
           description: New session's id
+    Card Request:
+      type: object
+      required:
+        - title
+        - difficulty
+        - date
+        - type
+      properties:
+        title:
+          type: string
+          example: Take out the trash
+          minimum: 2
+          maximum: 100
+          description: Card's title
+        difficulty:
+          type: string
+          example: Normal
+          enum:
+            - Easy
+            - Normal
+            - Hard
+          description: Card's difficulty
+        category:
+          type: string
+          example: Learning
+          enum:
+            - Stuff
+            - Family
+            - Health
+            - Learning
+            - Leisure
+            - Work
+          description: Card's category
+        date:
+          type: string
+          example: 2022-06-13
+          description: Card's date (deadline, if card is challenge)
+        time:
+          type: string
+          example: 11:40
+          description: Card's time (deadline, if card is challenge)
+        type:
+          type: string
+          example: Task
+          enum:
+            - Task
+            - Challenge
+          description: Card's type
+    Card Response:
+      type: object
+      properties:
+        createdCard:
+          type: object
+          properties:
+            title:
+              type: string
+              example: Take out the trash
+              description: Card's title
+            difficulty:
+              type: string
+              example: Normal
+              enum:
+                - Easy
+                - Normal
+                - Hard
+              description: Card's difficulty
+            category:
+              type: string
+              example: Learning
+              enum:
+                - Stuff
+                - Family
+                - Health
+                - Learning
+                - Leisure
+                - Work
+              description: Card's category
+            date:
+              type: string
+              example: 2022-06-13
+              description: Card's date (deadline, if card is challenge)
+            time:
+              type: string
+              example: 11:40
+              description: Card's time (deadline, if card is challenge)
+            type:
+              type: string
+              example: Task
+              enum:
+                - Task
+                - Challenge
+              description: Card's type
+            isCompleted:
+              type: boolean
+              example: false
+              description: Card's status
+            owner:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's owner's id
+            _id:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's id
+    Get Card Response:
+      type: object
+      description: User's cards
+      properties:
+        cards:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's id
+            title:
+              type: string
+              example: Take out the trash
+              description: Card's title
+            difficulty:
+              type: string
+              example: Normal
+              enum:
+                - Easy
+                - Normal
+                - Hard
+              description: Card's difficulty
+            category:
+              type: string
+              example: Learning
+              enum:
+                - Stuff
+                - Family
+                - Health
+                - Learning
+                - Leisure
+                - Work
+              description: Card's category
+            date:
+              type: string
+              example: 2022-06-13
+              description: Card's date (deadline, if card is challenge)
+            time:
+              type: string
+              example: 11:40
+              description: Card's time (deadline, if card is challenge)
+            type:
+              type: string
+              example: Task
+              enum:
+                - Task
+                - Challenge
+              description: Card's type
+            isCompleted:
+              type: boolean
+              example: false
+              description: Card's status
+            owner:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's owner's id
+    Edit Card Request:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Clean the toilet
+          minimum: 2
+          maximum: 100
+          description: Card's title
+        difficulty:
+          type: string
+          example: Hard
+          enum:
+            - Easy
+            - Normal
+            - Hard
+          description: Card's difficulty
+        category:
+          type: string
+          example: Stuff
+          enum:
+            - Stuff
+            - Family
+            - Health
+            - Learning
+            - Leisure
+            - Work
+          description: Card's category
+        date:
+          type: string
+          example: 2022-06-13
+          description: Card's date (deadline, if card is challenge)
+        time:
+          type: string
+          example: 11:40
+          description: Card's time (deadline, if card is challenge)
+        type:
+          type: string
+          example: Task
+          enum:
+            - Task
+            - Challenge
+          description: Card's type
+    Edit Card Response:
+      type: object
+      properties:
+        editedCard:
+          type: object
+          properties:
+            title:
+              type: string
+              example: Clean the toilet
+              description: Card's title
+            difficulty:
+              type: string
+              example: Hard
+              enum:
+                - Easy
+                - Normal
+                - Hard
+              description: Card's difficulty
+            category:
+              type: string
+              example: Stuff
+              enum:
+                - Stuff
+                - Family
+                - Health
+                - Learning
+                - Leisure
+                - Work
+              description: Card's category
+            date:
+              type: string
+              example: 2022-06-13
+              description: Card's date (deadline, if card is challenge)
+            time:
+              type: string
+              example: 11:40
+              description: Card's time (deadline, if card is challenge)
+            type:
+              type: string
+              example: Task
+              enum:
+                - Task
+                - Challenge
+              description: Card's type
+            isCompleted:
+              type: boolean
+              example: false
+              description: Card's status
+    Completed Card Response:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Card status was changed to 'completed'
+        editedCard:
+          type: object
+          properties:
+            _id:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's id
+            title:
+              type: string
+              example: Clean the toilet
+              description: Card's title
+            difficulty:
+              type: string
+              example: Hard
+              enum:
+                - Easy
+                - Normal
+                - Hard
+              description: Card's difficulty
+            category:
+              type: string
+              example: Stuff
+              enum:
+                - Stuff
+                - Family
+                - Health
+                - Learning
+                - Leisure
+                - Work
+              description: Card's category
+            date:
+              type: string
+              example: 2022-06-13
+              description: Card's date (deadline, if card is challenge)
+            time:
+              type: string
+              example: 11:40
+              description: Card's time (deadline, if card is challenge)
+            type:
+              type: string
+              example: Task
+              enum:
+                - Task
+                - Challenge
+              description: Card's type
+            isCompleted:
+              type: boolean
+              example: true
+              description: Card's status
+            owner:
+              type: string
+              example: 62a6220969d60457c1ec142e
+              description: Card's owner's id
 
 paths:
   /api/users:
@@ -298,3 +611,134 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Refresh Tokens Response"
+        "400":
+          description: No sid provided
+        "401":
+          description: Unauthorized
+        "403":
+          description: Wrong sid provided
+  /api/card:
+    post:
+      summary: Create card
+      tags: [Card]
+      description: Create card
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Card's object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Card Request"
+      responses:
+        "201":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card Response"
+        "400":
+          description: Bad Request (invalid request body)
+        "401":
+          description: Unauthorized
+        "500":
+          description: Card validation failed
+    get:
+      summary: Get all user's cards
+      tags: [Card]
+      description: Get all user's cards
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Get Card Response"
+        "401":
+          description: Unauthorized
+  /api/card/{cardId}:
+    patch:
+      summary: Edit card
+      tags: [Card]
+      description: Edit card
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cardId
+          schema:
+            type: string
+          required: true
+          description: Edited card ID
+      requestBody:
+        description: Card's object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Edit Card Request"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Edit Card Response"
+        "400":
+          description: Invalid cardId
+        "401":
+          description: Unauthorized
+        "404":
+          description: Card not found!
+    delete:
+      summary: Delete card
+      tags: [Card]
+      description: Delete card
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cardId
+          schema:
+            type: string
+          required: true
+          description: ID of a card to delete
+      responses:
+        "204":
+          description: Successful operation
+        "400":
+          description: Invalid cardId
+        "401":
+          description: Unauthorized
+        "404":
+          description: No card with given Id in database
+  /api/card/complete/{cardId}:
+    patch:
+      summary: Confirm that card is completed
+      tags: [Card]
+      description: Confirm that card is completed
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: cardId
+          schema:
+            type: string
+          required: true
+          description: ID of a card to complete
+      responses:
+        "200":
+          description: Card status was changed to 'completed'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Completed Card Response"
+        "400":
+          description: Invalid cardId
+        "401":
+          description: Unauthorized
+        "409":
+          description: Card has already been completed
