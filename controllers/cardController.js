@@ -1,6 +1,6 @@
 const Card = require("../service/schemas/card");
 const { cardSchema } = require("../helpers/joi");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
 const createCard = async (req, res, next) => {
   const { title, difficulty, category, date, time, type } = req.body;
