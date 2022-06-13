@@ -3,6 +3,11 @@ tags:
   description: Users endpoints
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       type: object
@@ -166,6 +171,34 @@ components:
                   type: string
                   example: 62a6220969d60457c1ec142e
                   description: Card's owner's id
+    Refresh Tokens Request:
+      type: object
+      required:
+        - sid
+      properties:
+        sid:
+          type: string
+          format: uuid
+          example: 05b4cd18-f5af-4aac-9eed-272c4f16464e
+          description: Session's id ('sid' field after authentication)
+    Refresh Tokens Response:
+      type: object
+      properties:
+        newAccessToken:
+          type: string
+          format: jwt
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTVlNzZiZTU2YjM1OWJiY2U2ZDBhMiIsImVtYWlsIjoicmFkZWtAZ21haWwuY29tIiwiaWF0IjoxNjU1MDUyMDM4LCJleHAiOjE2NTUwNTU2Mzh9.4uW-8WYaoqRFjRmFbzoWgUlmTgWG_JxrjSbi6shsElk
+          description: New access token
+        newRefreshToken:
+          type: string
+          format: jwt
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTVlNzZiZTU2YjM1OWJiY2U2ZDBhMiIsImVtYWlsIjoicmFkZWtAZ21haWwuY29tIiwiaWF0IjoxNjU1MDUyMDM4LCJleHAiOjE2NTUwNTU2Mzh9.5BVPRez1ow7xRADNCj1OW7bxezd7AWPKeRv6aXSBkss
+          description: New refresh token
+        newSid:
+          type: string
+          format: uuid
+          example: 05b4cd18-f5af-4aac-9eed-272c4f16464e
+          description: New session's id
 
 paths:
   /api/users:
@@ -230,3 +263,38 @@ paths:
           description: Bad request (invalid request body)
         "403":
           description: User with provided email doesn't exist / Password is wrong
+  /api/users/logout:
+    post:
+      summary: User logout
+      tags: [Users]
+      description: User logout
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Successful logout
+        "400":
+          description: No accessToken provided
+        "401":
+          description: Unauthorized
+  /api/users/refresh:
+    post:
+      summary: Get new pair of tokens (use refreshToken instead of accessToken)
+      tags: [Users]
+      description: Get new pair of tokens (use refreshToken instead of accessToken)
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: Object with session's id
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Refresh Tokens Request"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Refresh Tokens Response"
