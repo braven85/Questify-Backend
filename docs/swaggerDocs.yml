@@ -112,6 +112,60 @@ components:
               type: string
               example: 62a5e76be56b359bbce6d0a2
               description: User's id
+            cards:
+              type: object
+              description: User's card
+              properties:
+                _id:
+                  type: string
+                  example: 62a6222d69d60457c1ec1437
+                  description: Card's id
+                title:
+                  type: string
+                  example: Do the laundry
+                  description: Card's title
+                difficulty:
+                  type: string
+                  example: Normal
+                  enum:
+                    - Easy
+                    - Normal
+                    - Hard
+                  description: Card's difficulty
+                category:
+                  type: string
+                  example: Learning
+                  enum:
+                    - Stuff
+                    - Family
+                    - Health
+                    - Learning
+                    - Leisure
+                    - Work
+                  description: Card's category
+                date:
+                  type: string
+                  example: 2022-06-13
+                  description: Card's date (deadline, if card is challenge)
+                time:
+                  type: string
+                  example: 11:40
+                  description: Card's time (deadline, if card is challenge)
+                type:
+                  type: string
+                  example: Task
+                  enum:
+                    - Task
+                    - Challenge
+                  description: Card's type
+                isCompleted:
+                  type: boolean
+                  example: false
+                  description: Card's status
+                owner:
+                  type: string
+                  example: 62a6220969d60457c1ec142e
+                  description: Card's owner's id
 
 paths:
   /api/users:
@@ -153,3 +207,26 @@ paths:
           description: Bad request (invalid request body)
         "409":
           description: User already exists
+  /api/users/login:
+    post:
+      summary: User authentication
+      tags: [Users]
+      description: User authentication
+      requestBody:
+        description: Authentication's object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login Request"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login Response"
+        "400":
+          description: Bad request (invalid request body)
+        "403":
+          description: User with provided email doesn't exist / Password is wrong
