@@ -60,9 +60,13 @@ const loginUser = async (req, res, next) => {
     return res.status(403).json({ message: "Wrong credentials" });
   }
 
+  const sid = uuidv4();
+  await Session.create({ sid, owner: user._id });
+
   const payload = {
     id: user._id,
     email: user.email,
+    sid,
   };
 
   const accessToken = jwt.sign(payload, process.env.SECRETACC, {
@@ -71,9 +75,6 @@ const loginUser = async (req, res, next) => {
   const refreshToken = jwt.sign(payload, process.env.SECRETREF, {
     expiresIn: "1h",
   });
-
-  const sid = uuidv4();
-  await Session.create({ sid, owner: user._id });
 
   await User.findByIdAndUpdate(user._id, {
     accessToken,
