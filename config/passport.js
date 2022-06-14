@@ -29,6 +29,8 @@ const passportFunction = async (payload, done) => {
 
   if (session) {
     return done(null, user);
+  } else if (!session) {
+    return done(new Error("Session expired!"));
   } else {
     return done(new Error("Sid mismatch!"));
   }
