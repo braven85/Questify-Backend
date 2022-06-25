@@ -18,7 +18,7 @@ const cardSchema = Joi.object({
   ),
   date: Joi.string().required(),
   time: Joi.string(),
-  type: Joi.any().valid("Task", "Challenge").required(),
+  type: Joi.any().valid("quest", "challenge").required(),
   isCompleted: Joi.boolean(),
 });
 
@@ -35,7 +35,7 @@ const editedCardSchema = Joi.object({
   ),
   date: Joi.string(),
   time: Joi.string(),
-  type: Joi.any().valid("Task", "Challenge"),
+  type: Joi.any().valid("quest", "challenge"),
   isCompleted: Joi.boolean(),
 });
 

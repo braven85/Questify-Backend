@@ -33,7 +33,7 @@ const card = new Schema(
     },
     type: {
       type: String,
-      enum: ["Task", "Challenge"],
+      enum: ["quest", "challenge"],
       required: [true, "Card's type is required"],
     },
     isCompleted: {
