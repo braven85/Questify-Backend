@@ -131,14 +131,14 @@ components:
                   description: Card's difficulty
                 category:
                   type: string
-                  example: Learning
+                  example: LEARNING
                   enum:
-                    - Stuff
-                    - Family
-                    - Health
-                    - Learning
-                    - Leisure
-                    - Work
+                    - STUFF
+                    - FAMILY
+                    - HEALTH
+                    - LEARNING
+                    - LEISURE
+                    - WORK
                   description: Card's category
                 date:
                   type: string
@@ -215,14 +215,14 @@ components:
           description: Card's difficulty
         category:
           type: string
-          example: Learning
+          example: LEARNING
           enum:
-            - Stuff
-            - Family
-            - Health
-            - Learning
-            - Leisure
-            - Work
+            - STUFF
+            - FAMILY
+            - HEALTH
+            - LEARNING
+            - LEISURE
+            - WORK
           description: Card's category
         date:
           type: string
@@ -259,14 +259,14 @@ components:
               description: Card's difficulty
             category:
               type: string
-              example: Learning
+              example: LEARNING
               enum:
-                - Stuff
-                - Family
-                - Health
-                - Learning
-                - Leisure
-                - Work
+                - STUFF
+                - FAMILY
+                - HEALTH
+                - LEARNING
+                - LEISURE
+                - WORK
               description: Card's category
             date:
               type: string
@@ -320,14 +320,14 @@ components:
               description: Card's difficulty
             category:
               type: string
-              example: Learning
+              example: LEARNING
               enum:
-                - Stuff
-                - Family
-                - Health
-                - Learning
-                - Leisure
-                - Work
+                - STUFF
+                - FAMILY
+                - HEALTH
+                - LEARNING
+                - LEISURE
+                - WORK
               description: Card's category
             date:
               type: string
@@ -371,14 +371,14 @@ components:
           description: Card's difficulty
         category:
           type: string
-          example: Stuff
+          example: STUFF
           enum:
-            - Stuff
-            - Family
-            - Health
-            - Learning
-            - Leisure
-            - Work
+            - STUFF
+            - FAMILY
+            - HEALTH
+            - LEARNING
+            - LEISURE
+            - WORK
           description: Card's category
         date:
           type: string
@@ -415,14 +415,14 @@ components:
               description: Card's difficulty
             category:
               type: string
-              example: Stuff
+              example: STUFF
               enum:
-                - Stuff
-                - Family
-                - Health
-                - Learning
-                - Leisure
-                - Work
+                - STUFF
+                - FAMILY
+                - HEALTH
+                - LEARNING
+                - LEISURE
+                - WORK
               description: Card's category
             date:
               type: string
@@ -470,14 +470,14 @@ components:
               description: Card's difficulty
             category:
               type: string
-              example: Stuff
+              example: STUFF
               enum:
-                - Stuff
-                - Family
-                - Health
-                - Learning
-                - Leisure
-                - Work
+                - STUFF
+                - FAMILY
+                - HEALTH
+                - LEARNING
+                - LEISURE
+                - WORK
               description: Card's category
             date:
               type: string
