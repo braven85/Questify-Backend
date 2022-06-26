@@ -20,7 +20,7 @@ const createCard = async (req, res, next) => {
     return res.status(400).json({ message: error.message });
   }
 
-  const cardWithTheSameTitle = await Card.findOne({ title: title });
+  const cardWithTheSameTitle = await Card.findOne({ title: title, owner: _id });
 
   if (cardWithTheSameTitle) {
     return res.status(403).json({
