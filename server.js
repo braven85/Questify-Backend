@@ -8,6 +8,8 @@ const swaggerUi = require("swagger-ui-express");
 require("dotenv").config();
 
 const app = express();
+
+// recognize the incoming Request Object as a JSON Object
 app.use(express.json());
 
 app.use(
@@ -40,12 +42,14 @@ require("./config/passport");
 
 app.use("/api", routes);
 
+// 404 - Not Found
 app.use((_, res, __) => {
   res.status(404).json({
     message: "Use api on routes: /api",
   });
 });
 
+// 500 - Internal Server Error
 app.use((err, _, res, __) => {
   res.status(500).json({
     message: err.message,

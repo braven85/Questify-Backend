@@ -8,6 +8,7 @@ const {
   protectRefresh,
 } = require("../controllers/authController");
 
+// User routes
 router
   .get("/users", userController.getAllUsers)
   .post("/users/register", userController.registerUser)
@@ -25,6 +26,7 @@ router
     userController.refreshTokens
   );
 
+// Cards routes
 router
   .post("/card", protectAccess, accessMiddleware, cardController.createCard)
   .patch(

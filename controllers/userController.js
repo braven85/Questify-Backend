@@ -20,22 +20,26 @@ const registerUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email) {
-    return res.status(400).json({ message: "Email is required" });
+    return res.status(400).json({ message: "Email is required" }); // 400 Bad Request
   }
 
   if (!password) {
-    return res.status(400).json({ message: "Password is required" });
+    return res.status(400).json({ message: "Password is required" }); // 400 Bad Request
   }
 
+  // validate if email and password passes Joi validation
   const { error } = userSchema.validate({ email, password });
 
   if (error) {
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message }); // 400 Bad Request
   }
 
+  // check if user with given email is already in database
+  // "{ _id: 1 }" is a micro-optimization - returns only id
+  // lean() returns a JavaScript object instead of a Mongoose document.
   const user = await User.findOne({ email }, { _id: 1 }).lean();
   if (user) {
-    return res.status(409).json({ message: "User already exists" });
+    return res.status(409).json({ message: "User already exists" }); // 409 Conflict
   }
 
   try {

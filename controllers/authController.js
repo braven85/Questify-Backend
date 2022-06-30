@@ -14,7 +14,7 @@ const protectAccess = async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
 
-  // if token doesn't exist return response message with 401 code
+  // if token doesn't exist return response message with 401 Unauthorized code
   if (!token) {
     return res
       .status(401)
